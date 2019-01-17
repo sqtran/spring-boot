@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class Example {
 
     @RequestMapping("/")
-    String home() {
+    public String home() {
         return "Hello World!";
+    }
+    
+    @RequestMapping("/health")
+    public String healthz() {
+    	return "status.:.UP";
     }
 
     public static void main(String[] args) throws Exception {
