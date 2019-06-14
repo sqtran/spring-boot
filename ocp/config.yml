@@ -1,0 +1,4 @@
+readinessProbe: "/actuator/health" 
+livelinessProbe: "/actuator/health"
+secretKeyRef: "springboot-webapp-sk"
+configMapRef: "springboot-webapp-cm"
