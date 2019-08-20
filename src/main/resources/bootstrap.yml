@@ -1,8 +1,8 @@
 spring.application.name: gs-vault-config
 spring.cloud.vault:
-    host: "${vault.host:kubernetes.default.svc}"
-    port: 443
-    scheme: https
+    host: vault.vault-dev.svc.cluster.local
+    port: 8200
+    scheme: http
     authentication: KUBERNETES
     kubernetes:
         role: demo
