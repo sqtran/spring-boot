@@ -1,0 +1,9 @@
+spring.application.name: gs-vault-config
+spring.cloud.vault:
+    host: ${vault.host:kubernetes.default.svc}
+    port: ${vault.port:443}
+    scheme: https
+    authentication: KUBERNETES
+    kubernetes:
+        role: demo
+        service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
