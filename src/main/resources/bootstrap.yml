@@ -1,6 +1,5 @@
+spring.application.name: gs-vault-config
 spring:
-  application:
-    name: gs-vault-config
   cloud:
     vault:
       generic:
