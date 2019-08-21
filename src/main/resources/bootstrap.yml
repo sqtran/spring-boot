@@ -2,7 +2,8 @@ spring:
   cloud:
     vault:
       generic:
-        enabled: false
+        enabled: true
+        backend: secret
       host: ${VAULT_HOST:vault.vault-dev.svc.cluster.local}
       port: 8200
       scheme: https
