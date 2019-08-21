@@ -24,6 +24,9 @@ public class Example {
     @Value("${STRAN}")
     private String pword;
 
+    @Value("${steve.message}")
+    private String message;
+
     public Example(MyConfiguration configuration) {
         this.configuration = configuration;
     }
@@ -33,8 +36,13 @@ public class Example {
         return String.format("Hello World %s %s %s %s!", configuration.getUsername(), configuration.getPassword(), uname, pword );
     }
 
-    @RequestMapping("/health")
-    public String healthz() {
+    @RequestMapping("/message")
+    public String message() {
+        return String.format("The Message = %s", message);
+    }
+
+    @RequestMapping("/status")
+    public String statuz() {
     	return "status.:.UP";
     }
 

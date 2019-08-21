@@ -1,4 +1,5 @@
 spring.application.name: gs-vault-config
+steve.message: ${VAULT_MSG:none}
 spring:
   cloud:
     vault:
