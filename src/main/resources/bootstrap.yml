@@ -1,12 +1,11 @@
+spring.application.name: gs-vault-config
 spring:
-  application:
-    name: gs-vault-config
   cloud:
     vault:
       generic:
-        enabled: false
+        enabled: true
       host: ${VAULT_HOST:vault.vault-dev.svc.cluster.local}
-      port: 8200
+      port: ${VAULT_PORT:8200}
       scheme: https
       authentication: KUBERNETES
       kubernetes:
