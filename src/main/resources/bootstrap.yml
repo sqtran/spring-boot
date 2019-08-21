@@ -3,13 +3,13 @@ spring:
   cloud:
     vault:
       generic:
-        enabled: true
+        enabled: ${VAULT_GENERIC_ENABLED:false}
       host: ${VAULT_HOST:vault.vault-dev.svc.cluster.local}
       port: ${VAULT_PORT:8200}
-      scheme: https
+      scheme: ${VAULT_TP_SCHEME:https}
       authentication: KUBERNETES
       kubernetes:
-        role: demo
+        role: ${VAULT_ROLE:demo}
         service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
       config:
         order: 10
