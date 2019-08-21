@@ -3,10 +3,9 @@ spring:
   cloud:
     vault:
       generic:
-        enabled: true
-        backend: secret
+        enabled: false
       host: ${VAULT_HOST:vault.vault-dev.svc.cluster.local}
-      port: 8200
+      port: ${VAULT_PORT:8200}
       scheme: https
       authentication: KUBERNETES
       kubernetes:
