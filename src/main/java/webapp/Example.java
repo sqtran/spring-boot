@@ -18,10 +18,10 @@ public class Example {
 
     private final MyConfiguration configuration;
 
-    @Value("${username}")
+    @Value("${example.username}")
     private String uname;
 
-    @Value("${password}")
+    @Value("${STRAN}")
     private String pword;
 
     public Example(MyConfiguration configuration) {
