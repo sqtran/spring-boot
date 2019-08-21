@@ -5,7 +5,7 @@ spring:
       generic:
         enabled: false
       host: ${VAULT_HOST:vault.vault-dev.svc.cluster.local}
-      port: ${VAULT_PORT:8200}
+      port: 8200
       scheme: https
       authentication: KUBERNETES
       kubernetes:
