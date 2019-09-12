@@ -11,9 +11,10 @@ public class Example {
 
     @RequestMapping("/")
     public String home() {
+        System.out.println("Home endpoint called!");
         return "Hello World!";
     }
-    
+
     @RequestMapping("/health")
     public String healthz() {
     	return "status.:.UP";
