@@ -1,13 +1,21 @@
 package webapp;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.net.UnknownHostException;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
@@ -32,6 +40,33 @@ public class Example {
             logger.error(e.getMessage(), e);
         }
         return msg;
+    }
+
+    @GetMapping("/headers")
+    public ResponseEntity<String> listAllHeaders(
+      @RequestHeader Map<String, String> headers) {
+        String msg = String.format("Listed %d headers\n", headers.size());
+        
+        for(String s: headers.keySet()) {
+        	String m = String.format("Header '%s' = %s\n</br>", s, headers.get(s));
+            msg += m;
+            logger.info(m);
+        }
+
+        return new ResponseEntity<String>(msg, HttpStatus.OK);
+    }
+
+    @GetMapping("/headers2")
+    public ResponseEntity<String> multiValue(@RequestHeader MultiValueMap<String, String> headers) {
+      String msg = String.format("Listed %d headers\n", headers.size());
+
+      for(String s: headers.keySet()) {
+          String m = String.format("Header '%s' = %s\n</br>", s, headers.get(s).stream().collect(Collectors.joining("|")));
+          msg += m;
+          logger.info(m);
+      }
+      
+      return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
 
     @RequestMapping("/health")
