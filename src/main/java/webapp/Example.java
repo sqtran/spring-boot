@@ -2,6 +2,8 @@ package webapp;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Example {
 
     private static final Logger logger = LogManager.getLogger(Example.class);
+    private static SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
 
     @RequestMapping("/myerror")
     public String myerror() {
@@ -31,9 +34,9 @@ public class Example {
     }
 
     @RequestMapping("/")
-    public String home() throws UnknownHostException { 
+    public String home() throws UnknownHostException {
       logger.info("Home endpoint called! " +  InetAddress.getLocalHost() + " : " + InetAddress.getLocalHost().getHostName());
-      return String.format("Hello World! : IP %15s : hostname %20s\n", InetAddress.getLocalHost().getHostAddress(), InetAddress.getLocalHost().getHostName());
+      return String.format("%s Hello World! : IP %15s : hostname %20s\n", formatter.format(new Date()), InetAddress.getLocalHost().getHostAddress(), InetAddress.getLocalHost().getHostName());
     }
 
     @GetMapping("/headers")
