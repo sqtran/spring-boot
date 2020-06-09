@@ -32,10 +32,10 @@ public class Example {
 
     @RequestMapping("/")
     public String home() {
-        String msg = "Hello World! ";
+        String msg = "Hello World Response! ";
         try {
           logger.info("Home endpoint called! " +  InetAddress.getLocalHost() + " : " + InetAddress.getLocalHost().getHostName());
-          msg += InetAddress.getLocalHost() + " : " + InetAddress.getLocalHost().getHostName();
+          msg += "local address = " + InetAddress.getLocalHost() + " ; hostname = " + InetAddress.getLocalHost().getHostName() + "\n";
         } catch (UnknownHostException e) {
             logger.error(e.getMessage(), e);
         }
