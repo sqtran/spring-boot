@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+    <Appenders>
+        <Console name="ConsoleJson" target="SYSTEM_OUT">
+            <JsonLayout properties="false" propertiesAsList="false" complete="false" compact="false" eventEol="true" includeStackTrace="true" stackTraceAsString="true" objectMessageAsJsonObject="true">
+                <KeyValuePair key="ApplicationName" value="${ctx:application}"/>
+                <KeyValuePair key="FixedValue" value="ABC123"/>
+                <KeyValuePair key="Timestamp" value="$${date:yyyy-MM-dd HH:mm:ss}"/>
+            </JsonLayout>
+        </Console>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d [%p] %M(%f:%L) - %m%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="webapp" additivity="false" level="INFO">
+            <AppenderRef ref="ConsoleJson"/>
+        </Logger>
+    </Loggers>
+</Configuration>
