@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.MDC;
+
 
 @RestController
 @EnableAutoConfiguration
@@ -27,15 +29,19 @@ public class Example {
     private static SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
 
     @RequestMapping("/myerror")
-    public String myerror() {
+    public ResponseEntity<String> myerror() {
       Exception npe = new NullPointerException("Forcing an exception to be thrown");
       logger.error("Forcing an exception to be thrown and sent to logging framework", npe);
-      return "Check console for error message";
+
+      return new ResponseEntity<String>("Check console for error message", HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
     }
 
     @RequestMapping("/")
     public String home() throws UnknownHostException {
       logger.info("Home endpoint called! " +  InetAddress.getLocalHost() + " : " + InetAddress.getLocalHost().getHostName());
+
+      MDC.put("request_date", formatter.format(new Date()));
+
       return String.format("%s Hello World! : IP %15s : hostname %20s\n", formatter.format(new Date()), InetAddress.getLocalHost().getHostAddress(), InetAddress.getLocalHost().getHostName());
     }
 
@@ -43,13 +49,12 @@ public class Example {
     public ResponseEntity<String> listAllHeaders(
       @RequestHeader Map<String, String> headers) {
         String msg = String.format("Listed %d headers\n", headers.size());
-        
+
         for(String s: headers.keySet()) {
         	String m = String.format("Header '%s' = %s\n</br>", s, headers.get(s));
             msg += m;
             logger.info(m);
         }
-
         return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
 
@@ -62,7 +67,7 @@ public class Example {
           msg += m;
           logger.info(m);
       }
-      
+
       return new ResponseEntity<String>(msg, HttpStatus.OK);
     }
 
@@ -73,6 +78,8 @@ public class Example {
     }
 
     public static void main(String[] args) throws Exception {
+        MDC.put("application", "steve");
+      
         SpringApplication.run(Example.class, args);
     }
 
