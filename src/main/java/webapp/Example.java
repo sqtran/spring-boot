@@ -17,6 +17,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.MDC;
 
@@ -77,9 +78,16 @@ public class Example {
     	return "status.:.UP";
     }
 
+    @RequestMapping("/print")
+    public String print(@RequestParam(name = "message") String message) {
+      logger.info(message);
+    	return message;
+    }
+
+
     public static void main(String[] args) throws Exception {
         MDC.put("application", "steve");
-      
+
         SpringApplication.run(Example.class, args);
     }
 
