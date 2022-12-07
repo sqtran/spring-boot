@@ -47,7 +47,7 @@
 			<version>4.13.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>au.com.dius</groupId>
 			<artifactId>pact-jvm-consumer-junit_2.11</artifactId>
 			<version>3.5.0</version>
@@ -59,7 +59,7 @@
 			<artifactId>pact-jvm-provider-junit_2.11</artifactId>
 			<version>3.5.0</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 
 		<!-- <dependency>
 			<groupId>ch.qos.logback</groupId>
