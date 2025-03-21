@@ -1,4 +1,4 @@
-## Springboot HelloWorld App
+# Springboot HelloWorld App
 
 Super simple spring-boot app for testing.
 
@@ -10,12 +10,7 @@ mvn spring-boot:run
 
 Once started, the root context `/` will return a "hello world" message with the hostname of the service.
 
-
 Visit `/myerror` to view a generated error message.
-
-
-
-
 
 | Endpoint|Description|
 |----------|:-------------:|
@@ -25,4 +20,4 @@ Visit `/myerror` to view a generated error message.
 | `/headers` | dumps all the headers |
 | `/headers2` | dumps all the headers, even for collections |
 
-If TLS is enabled, you have to access everything via https://localhost:8443.  Check `application.properties` to verify if TLS is enabled or not.
+If TLS is enabled, you have to access everything via <https://localhost:8443>.  Check `application.properties` to verify if TLS is enabled or not.
